@@ -1,4 +1,4 @@
-# text_progress_bar
+# Text Progess Bar
 An example of a class that can make a text or a bitmap into a progress bar.
 
 The class takes a bitmap or an object with a bitmap property.  
