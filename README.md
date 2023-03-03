@@ -1,6 +1,8 @@
 # Text Progess Bar
 An example of a class that can make a text or a bitmap into a progress bar.
 
+To run the examples, put the `oil_can.bmp` file in `CIRCUITPY/bmp/`
+
 The class takes a bitmap or an object with a bitmap property.  
 It swaps the "full" and "empty" color indexes based on the value of progress (0-100).
 - a palette allows selecting the "full" and "empty" colors based on the given colors.

@@ -1,39 +1,5 @@
 # SPDX-FileCopyrightText: Copyright 2023 Neradoc, https://neradoc.me
 # SPDX-License-Identifier: MIT
-import board
-import displayio
-import terminalio
-import time
-import adafruit_imageload
-from adafruit_display_text.bitmap_label import Label
-
-display = board.DISPLAY
-sprite_group = displayio.Group()
-display.show(sprite_group)
-
-volume_label = Label(
-    terminalio.FONT,
-    text="Volume",
-    scale=3,
-    anchor_point=(0.5,0),
-    anchored_position=(display.width//2, 10),
-    color=0xFFFFFF,
-    padding_top=2,
-    padding_bottom=2,
-    padding_left=4,
-    padding_right=4,
-)
-sprite_group.append(volume_label)
-
-oil_image, oil_palette = adafruit_imageload.load("/bmp/oil_can.bmp")
-oil_palette.make_transparent(1)
-oil_sprite = displayio.TileGrid(
-    oil_image,
-    pixel_shader=oil_palette,
-    x=display.width//2 - oil_image.width//2,
-    y=100,
-)
-sprite_group.append(oil_sprite)
 
 class ProgressBar:
     def __init__(self,
@@ -90,22 +56,3 @@ class ProgressBar:
         elif progress < self._progress:
             self.reverse(progress, self._progress)
         self._progress = progress
-
-display.auto_refresh = False
-
-volume_bar = ProgressBar(volume_label)
-oil_bar = ProgressBar(oil_sprite, oil_palette)
-
-while True:
-    for pct in range(101):
-        volume_bar.progress = pct
-        oil_bar.progress = pct
-        display.refresh()
-        time.sleep(0.01)
-    time.sleep(0.5)
-    for pct in range(100, -1, -1):
-        volume_bar.progress = pct
-        oil_bar.progress = pct
-        display.refresh()
-        time.sleep(0.01)
-    time.sleep(0.5)
