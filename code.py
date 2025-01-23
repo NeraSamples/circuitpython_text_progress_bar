@@ -9,7 +9,7 @@ from adafruit_display_text.bitmap_label import Label
 
 display = board.DISPLAY
 sprite_group = displayio.Group()
-display.show(sprite_group)
+display.root_group = sprite_group
 
 volume_label = Label(
     terminalio.FONT,

@@ -11,7 +11,7 @@ from progress_bar import ProgressBar
 display = board.DISPLAY
 display.auto_refresh = False
 sprite_group = displayio.Group()
-display.show(sprite_group)
+display.root_group = sprite_group
 
 oil_image, oil_palette = adafruit_imageload.load("/bmp/oil_can.bmp")
 oil_palette.make_transparent(1)
